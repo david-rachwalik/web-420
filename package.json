@@ -1,0 +1,19 @@
+{
+  "name": "web-420",
+  "author": "David Rachwalik",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.7",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
