@@ -11,7 +11,7 @@ paths:
       summary: returns a list of Composers
       responses:
         '200':
-          description: MongoDB Document
+          description: Composer documents in JSON format
         '500':
           description: Server Exception
         '501':
@@ -36,7 +36,7 @@ paths:
                   type: string
       responses:
         '200':
-          description: MongoDB Document
+          description: Composer successfully added
         '500':
           description: Server Exception
         '501':
@@ -57,7 +57,7 @@ paths:
             type: string
       responses:
         '200':
-          description: MongoDB Document
+          description: Composer document in JSON format
         '500':
           description: Server Exception
         '501':
