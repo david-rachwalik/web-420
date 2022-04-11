@@ -2,7 +2,7 @@
 ============================================
 ; Title:        app.js
 ; Author:       David Rachwalik
-; Date:         2022/03/20
+; Date:         2022/04/10
 ; Description:  Basic setup for WEB-420 projects
 ;===========================================
 */
@@ -12,15 +12,40 @@ const http = require('http');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const mongoose = require('mongoose');
+const composerAPI = require('./routes/rachwalik-composer-routes');
+
+// --- Database Setup Steps ---
+
+// Build database connection string (https://www.urlencoder.org)
+const database = 'web420DB';
+// const conn = `mongodb+srv://buwebdev-cluster-1.gfevl.mongodb.net/${database}`;
+const conn = `mongodb+srv://admin:admin@buwebdev-cluster-1.gfevl.mongodb.net/${database}?retryWrites=true&w=majority`;
+
+// Establish connection to MongoDB
+mongoose
+  .connect(conn, {
+    promiseLibrary: require('bluebird'),
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  })
+  .then(() => {
+    console.log(`MongoDB connection to '${database}' is successful!`);
+  })
+  .catch((err) => {
+    console.log(`MongoDB Error: ${err.message}`);
+  });
 
 // --- Application Setup Steps ---
 
 // Initialize Express app server
 let app = express();
-// Setup middleware
+
+// Configure port & middleware
+app.set('port', process.env.PORT || 3000);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// Setup OpenAPI/Swagger document library specification
+
+// Configure OpenAPI/Swagger document library specification
 const options = {
   definition: {
     openapi: '3.0.0',
@@ -34,8 +59,10 @@ const options = {
 const openapiSpecification = swaggerJsdoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
+// Configure API routing middleware
+app.use('/api', composerAPI);
+
 // Start the Node server
-app.set('port', process.env.PORT || 3000);
 http.createServer(app).listen(app.get('port'), () => {
   console.log(`Application started and listening on port ${app.get('port')}!`);
 });
