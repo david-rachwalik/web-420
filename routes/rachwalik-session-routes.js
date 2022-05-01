@@ -10,7 +10,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/rachwalik-user');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const saltRounds = 10;
 
@@ -69,7 +69,7 @@ router.post('/signup', async (req, res) => {
             emailAddress: req.body.emailAddress,
           };
 
-          user.create(newRegisteredUser, (err, registeredUser) => {
+          User.create(newRegisteredUser, (err, registeredUser) => {
             if (err) {
               console.log(err);
               res.status(501).send({

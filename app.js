@@ -12,8 +12,10 @@ const http = require('http');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const mongoose = require('mongoose');
+
 const composerAPI = require('./routes/rachwalik-composer-routes');
 const personAPI = require('./routes/rachwalik-person-routes');
+const userAPI = require('./routes/rachwalik-session-routes');
 
 // --- Database Setup Steps ---
 
@@ -63,6 +65,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 // Configure API routing middleware
 app.use('/api', composerAPI);
 app.use('/api', personAPI);
+app.use('/api', userAPI);
 
 // Start the Node server
 http.createServer(app).listen(app.get('port'), () => {
