@@ -2,7 +2,7 @@
 ============================================
 ; Title:        app.js
 ; Author:       David Rachwalik
-; Date:         2022/04/17
+; Date:         2022/05/01
 ; Description:  Basic setup for WEB-420 projects
 ;===========================================
 */
@@ -16,6 +16,7 @@ const mongoose = require('mongoose');
 const composerAPI = require('./routes/rachwalik-composer-routes');
 const personAPI = require('./routes/rachwalik-person-routes');
 const userAPI = require('./routes/rachwalik-session-routes');
+const customerAPI = require('./routes/rachwalik-node-shopper-routes');
 
 // --- Database Setup Steps ---
 
@@ -66,6 +67,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 app.use('/api', composerAPI);
 app.use('/api', personAPI);
 app.use('/api', userAPI);
+app.use('/api', customerAPI);
 
 // Start the Node server
 http.createServer(app).listen(app.get('port'), () => {
