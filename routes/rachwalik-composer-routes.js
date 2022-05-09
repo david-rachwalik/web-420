@@ -156,7 +156,7 @@ router.post('/composers', async (req, res) => {
 /**
  * updateComposerById
  * @openapi
- * /api/composers/:id:
+ * /api/composers/{id}:
  *   put:
  *     tags:
  *       - Composers
@@ -237,7 +237,7 @@ router.put('/composers/:id', async (req, res) => {
 /**
  * deleteComposerById
  * @openapi
- * /api/composers/:id:
+ * /api/composers/{id}:
  *   delete:
  *     tags:
  *       - Composers
