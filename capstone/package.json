@@ -1,0 +1,25 @@
+{
+  "name": "web-420-capstone",
+  "author": "David Rachwalik",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start2": "nodemon app.js",
+    "start": "node app.js",
+    "deploy": "git push heroku master"
+  },
+  "engines": {
+    "node": "^17.4.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.7.2",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.7",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
