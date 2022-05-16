@@ -63,6 +63,11 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 // Configure API routing middleware
 app.use('/api', teamAPI);
 
+// Automatically redirect to API page
+app.get('/', (request, response) => {
+  response.redirect('/api-docs');
+});
+
 // Start the Node server
 http.createServer(app).listen(app.get('port'), () => {
   console.log(`Application started and listening on port ${app.get('port')}!`);
@@ -85,6 +90,7 @@ http.createServer(app).listen(app.get('port'), () => {
 // git push heroku master
 // heroku ps:scale web=1
 // heroku open
+// heroku logs --tail
 
 // --- Deploy Commands ---
 // cd E:\Repos\web-420\capstone
